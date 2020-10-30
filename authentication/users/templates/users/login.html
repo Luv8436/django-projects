@@ -1,0 +1,32 @@
+{% extends 'users/base.html' %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block body %}
+    <div class="container"  >
+            <h1>
+                Login Page
+            </h1>
+        {% if message %}
+            <h3 style="color: red;" ><u> {{message}} </u></h3>
+        {% endif %}
+
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+            <div class="col-4">
+                <input type="text" class="form-control" placeholder="User name" name="username" >
+            </div>
+            <div class="col-4">
+                <input type="password" class="form-control" placeholder="Last name" name="password" >
+            </div>
+            <div class="col-4" >
+                <input type="submit" value="Login" />
+            </div>
+            </div>
+            
+        </form>
+    </div>
+{% endblock %}

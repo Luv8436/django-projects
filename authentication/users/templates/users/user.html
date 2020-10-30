@@ -1,0 +1,13 @@
+{% extends 'users/base.html' %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Hello , {% if user.first_name %} {{user.first_name}} {% else %} User {% endif %} </h1>
+        You are currently logged in as {{user.username}} .<br>
+        <a href="{% url 'logout' %}">Log out</a>
+    </div>
+{% endblock %}
