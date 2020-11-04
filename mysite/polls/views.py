@@ -3,7 +3,7 @@ from django.http import HttpResponse ,HttpResponseRedirect
 from django.http import Http404
 from django.urls import reverse
 from django.views import generic
-
+from django.utils import timezone
 #from django.template import loader
 
 from .models import Question , Choice
@@ -34,15 +34,15 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """ Return the last five published questions. """
-        return Question.objects.order_by('-pub_date')[:5]
+        return Question.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')[:5]
 
 class DetailView(generic.DetailView):
     model = Question
-    template = 'polls/detail.html'
+    template_name = 'polls/detail.html'
 
 class ResultsView(generic.DetailView):
     model = Question
-    template = 'polls/results.html'
+    template_name = 'polls/results.html'
     
 def vote(request, question_id):
     question = get_object_or_404(Question , pk=question_id)
