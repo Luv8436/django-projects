@@ -1,0 +1,26 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8"> 
+	<title>Hotel Images</title> 
+
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"> 
+	</script> 
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"> 
+	</script> 
+</head> 
+<body> 
+    <div class="container" style="margin: 50px;" >
+        <a class="btn btn-primary" style="margin: 50px;" href="/image_upload">Add another image</a>
+    </div>
+	{% for hotel in hotel_images %} 
+			<div class="col-md-4"> 
+					{{ hotel.name }} 
+					<img style="height: 400px;" id="{{hotel.id}}" src="{{ hotel.hotel_Main_Img.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" /> 
+					<a id="{{hotel.id}}" class="btn btn-primary" style="margin: 50px;" href="{% url 'delete_image' hotel.id %}">delete</a>
+			</div> 
+	{% endfor %} 
+</body> 
+</html> 
